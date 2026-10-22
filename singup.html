@@ -1,0 +1,764 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIA'O | Sign Up</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #bd2427;
+            --red-dark: #a91d20;
+            --cream: #fff3d9;
+            --yellow: #ffbf24;
+            --dark: #2d2b29;
+            --gray: #555555;
+            --white: #ffffff;
+            --border: #d8d8d8;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+            background: var(--cream);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* DECORACIÓN DEL FONDO */
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 15%;
+            height: 62%;
+            background: #f9df9e;
+            border-bottom-left-radius: 100px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .red-decoration {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 88px;
+            height: 38%;
+            background: var(--red);
+            border-top-right-radius: 100px 45px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* DISTRIBUCIÓN GENERAL */
+        .signup-page {
+            width: 100%;
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 54% 46%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* PANEL IZQUIERDO */
+        .left-panel {
+            padding: 12vh 5vw 45px 8.5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .logo {
+            display: inline-block;
+            width: fit-content;
+            color: var(--red);
+            text-decoration: none;
+            font-size: 60px;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 40px;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .headline {
+            max-width: 560px;
+            font-size: clamp(38px, 3.2vw, 55px);
+            line-height: 1.14;
+            letter-spacing: -1.2px;
+            font-weight: 750;
+            margin-bottom: 20px;
+        }
+
+        .headline span {
+            display: block;
+            color: var(--red);
+        }
+
+        .intro {
+            font-size: clamp(16px, 1.3vw, 21px);
+            line-height: 1.55;
+            max-width: 680px;
+            margin-bottom: 48px;
+        }
+
+        /* PUNTOS AMARILLOS */
+        .intro-wrap {
+            position: relative;
+        }
+
+        .dots {
+            position: absolute;
+            left: -48px;
+            top: -5px;
+            display: grid;
+            grid-template-columns: repeat(2, 12px);
+            gap: 14px 16px;
+        }
+
+        .dots span {
+            width: 11px;
+            height: 11px;
+            background: #f8b51b;
+            border-radius: 50%;
+        }
+
+        /* LISTA DE VENTAJAS */
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 33px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 27px;
+        }
+
+        .feature-icon {
+            width: 48px;
+            min-width: 48px;
+            height: 45px;
+            color: var(--red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon svg {
+            width: 39px;
+            height: 39px;
+            fill: currentColor;
+        }
+
+        .feature-icon .outline {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .feature-text h2 {
+            color: #171717;
+            font-size: 21px;
+            margin-bottom: 6px;
+        }
+
+        .feature-text p {
+            color: var(--gray);
+            font-size: 17px;
+            line-height: 1.45;
+        }
+
+        /* PANEL DERECHO */
+        .right-panel {
+            min-width: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 11.3vh 5.4vw 35px 0;
+        }
+
+        /* TARJETA DEL FORMULARIO */
+        .signup-card {
+            background: var(--white);
+            width: 100%;
+            max-width: 655px;
+            min-height: 820px;
+            border-radius: 32px 32px 0 0;
+            padding: 52px 55px 38px;
+            box-shadow: 0 8px 30px rgba(80, 55, 20, 0.04);
+        }
+
+        .form-heading {
+            margin-bottom: 34px;
+        }
+
+        .form-heading h1 {
+            font-size: clamp(27px, 2.1vw, 37px);
+            color: #080808;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .form-heading p {
+            font-size: 18px;
+            color: var(--red);
+        }
+
+        /* CAMPOS */
+        .form-group {
+            margin-bottom: 23px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 17px;
+            color: #171717;
+            margin-bottom: 9px;
+        }
+
+        .form-group input {
+            display: block;
+            width: 100%;
+            height: 57px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0 19px;
+            background: white;
+            outline: none;
+            font-family: inherit;
+            font-size: 17px;
+            color: #252525;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group input::placeholder {
+            color: #858585;
+            opacity: 1;
+        }
+
+        .form-group input:focus {
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(189, 36, 39, 0.08);
+        }
+
+        /* CONTRASEÑAS EN DOS COLUMNAS */
+        .password-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .password-row .form-group {
+            min-width: 0;
+        }
+
+        /* BOTÓN CREAR CUENTA */
+        .create-button {
+            width: 100%;
+            min-height: 58px;
+            border: none;
+            border-radius: 10px;
+            background: var(--yellow);
+            color: white;
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            margin-top: 1px;
+        }
+
+        .create-button:hover {
+            background: #f0ae0d;
+            transform: translateY(-1px);
+        }
+
+        /* ENLACE A INICIAR SESIÓN */
+        .signin-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 17px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .signin-area a {
+            color: var(--red);
+            font-size: 19px;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .form-message {
+            display: none;
+            color: var(--red);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 14px;
+        }
+
+        .form-message.visible {
+            display: block;
+        }
+
+        /* TABLETAS */
+        @media (max-width: 1050px) {
+            .signup-page {
+                grid-template-columns: 48% 52%;
+            }
+
+            .left-panel {
+                padding: 75px 30px 40px 8%;
+            }
+
+            .logo {
+                font-size: 48px;
+                margin-bottom: 35px;
+            }
+
+            .headline {
+                font-size: clamp(36px, 4.3vw, 48px);
+            }
+
+            .intro {
+                margin-bottom: 35px;
+            }
+
+            .features {
+                gap: 28px;
+            }
+
+            .feature {
+                gap: 16px;
+            }
+
+            .feature-text h2 {
+                font-size: 19px;
+            }
+
+            .feature-text p {
+                font-size: 15px;
+            }
+
+            .right-panel {
+                padding: 55px 25px 35px 0;
+            }
+
+            .signup-card {
+                padding: 38px 30px;
+                min-height: auto;
+            }
+
+            .form-heading h1 {
+                font-size: 29px;
+            }
+
+            .form-group {
+                margin-bottom: 19px;
+            }
+
+            .form-group input {
+                height: 53px;
+                font-size: 15px;
+            }
+
+            .password-row {
+                gap: 12px;
+            }
+
+            .form-group label {
+                font-size: 15px;
+            }
+        }
+
+        /* CELULARES */
+        @media (max-width: 700px) {
+            .signup-page {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .background-decoration {
+                width: 20%;
+                height: 300px;
+            }
+
+            .red-decoration {
+                width: 12px;
+                height: 180px;
+            }
+
+            .left-panel {
+                padding: 35px 28px 35px 35px;
+            }
+
+            .logo {
+                font-size: 44px;
+                margin-bottom: 25px;
+            }
+
+            .headline {
+                font-size: clamp(35px, 9vw, 48px);
+                margin-bottom: 15px;
+            }
+
+            .intro {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            .dots {
+                left: -23px;
+                grid-template-columns: repeat(2, 7px);
+                gap: 9px 9px;
+            }
+
+            .dots span {
+                width: 7px;
+                height: 7px;
+            }
+
+            .features {
+                gap: 23px;
+            }
+
+            .feature {
+                gap: 14px;
+            }
+
+            .feature-icon {
+                width: 38px;
+                min-width: 38px;
+                height: 38px;
+            }
+
+            .feature-icon svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            .feature-text h2 {
+                font-size: 18px;
+            }
+
+            .feature-text p {
+                font-size: 14px;
+            }
+
+            .right-panel {
+                padding: 0 18px 35px;
+            }
+
+            .signup-card {
+                max-width: 520px;
+                border-radius: 25px;
+                padding: 30px 22px;
+                min-height: auto;
+            }
+
+            .form-heading {
+                margin-bottom: 28px;
+            }
+
+            .form-heading h1 {
+                font-size: 28px;
+            }
+
+            .form-heading p {
+                font-size: 16px;
+            }
+
+            .password-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-group {
+                margin-bottom: 20px;
+            }
+
+            .form-group input {
+                height: 53px;
+            }
+
+            .create-button {
+                min-height: 55px;
+                font-size: 17px;
+            }
+
+            .signin-area {
+                font-size: 14px;
+            }
+
+            .signin-area a {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-decoration"></div>
+    <div class="red-decoration"></div>
+
+    <main class="signup-page">
+
+        <!-- PANEL IZQUIERDO -->
+        <section class="left-panel">
+
+            <a href="index.html" class="logo">FIA<span>'O</span></a>
+
+            <h1 class="headline">
+                Sign up for
+                <span>free</span>
+            </h1>
+
+            <div class="intro-wrap">
+                <div class="dots" aria-hidden="true">
+                    <span></span><span></span>
+                    <span></span><span></span>
+                    <span></span><span></span>
+                    <span></span><span></span>
+                    <span></span><span></span>
+                </div>
+
+                <p class="intro">
+                    Create your account on FIA'O and start managing
+                    your credit sales easily, securely, and in an
+                    organized way.
+                </p>
+            </div>
+
+            <div class="features">
+
+                <!-- FAST AND EASY -->
+                <article class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" aria-hidden="true">
+                            <circle class="outline" cx="24" cy="12" r="8"/>
+                            <path class="outline"
+                                d="M8 41v-5c0-7 6-12 13-12h6c7 0 13 5 13 12v5z"/>
+                        </svg>
+                    </div>
+
+                    <div class="feature-text">
+                        <h2>Fast &amp; Easy</h2>
+                        <p>
+                            Create your account in just a few minutes
+                            and start using the platform.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- SECURE -->
+                <article class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" aria-hidden="true">
+                            <path d="M24 2 5 10v12c0 12 8 20 19 24 11-4 19-12 19-24V10z"/>
+                            <path d="M24 8v32c8-4 13-10 13-18V13z"
+                                fill="#fff3d9"/>
+                        </svg>
+                    </div>
+
+                    <div class="feature-text">
+                        <h2>Secure</h2>
+                        <p>
+                            We protect your business and customer
+                            information.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- CLOUD BASED -->
+                <article class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" aria-hidden="true">
+                            <path d="M12 39a10 10 0 0 1-1-20 14 14 0 0 1 27-3 12 12 0 0 1 0 24z"/>
+                        </svg>
+                    </div>
+
+                    <div class="feature-text">
+                        <h2>Cloud-Based</h2>
+                        <p>
+                            Access your information anytime, anywhere,
+                            from any device.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- GREATER CONTROL -->
+                <article class="feature">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" aria-hidden="true">
+                            <path d="M5 5h5v33h33v5H5z"/>
+                            <rect x="13" y="23" width="5" height="12" rx="2"/>
+                            <rect x="22" y="15" width="5" height="20" rx="2"/>
+                            <rect x="31" y="20" width="5" height="15" rx="2"/>
+                            <rect x="40" y="9" width="5" height="26" rx="2"/>
+                        </svg>
+                    </div>
+
+                    <div class="feature-text">
+                        <h2>Greater Control</h2>
+                        <p>
+                            Keep track of your debits and business
+                            growth seamlessly.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- PANEL DERECHO: FORMULARIO -->
+        <section class="right-panel">
+
+            <div class="signup-card">
+
+                <div class="form-heading">
+                    <h1>Create your account</h1>
+                    <p>Complete the form to get started</p>
+                </div>
+
+                <form id="signupForm">
+
+                    <div class="form-group">
+                        <label for="fullName">Full name *</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            placeholder="Add your name"
+                            autocomplete="name"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Add your email"
+                            autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Add your number"
+                            autocomplete="tel"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="businessName">Business Name *</label>
+                        <input
+                            type="text"
+                            id="businessName"
+                            name="businessName"
+                            placeholder="Ejem: Tienda Doña Carmen"
+                            autocomplete="organization"
+                            required>
+                    </div>
+
+                    <div class="password-row">
+
+                        <div class="form-group">
+                            <label for="password">Password *</label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Add your password"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">
+                                Confirm Password *
+                            </label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Confirm"
+                                autocomplete="new-password"
+                                minlength="8"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="create-button">
+                        Create My Account
+                    </button>
+
+                    <p id="formMessage" class="form-message" role="status"></p>
+
+                    <div class="signin-area">
+                        <span>Already have an account?</span>
+                        <a href="login.html">Sign In</a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script>
+        const signupForm = document.getElementById("signupForm");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirmPassword");
+        const formMessage = document.getElementById("formMessage");
+
+        signupForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            formMessage.classList.remove("visible");
+
+            if (password.value !== confirmPassword.value) {
+                formMessage.textContent =
+                    "Your passwords do not match. Please try again.";
+
+                formMessage.classList.add("visible");
+                confirmPassword.focus();
+                return;
+            }
+
+            formMessage.textContent =
+                "The form is valid, but account creation still needs to be connected to a secure database or authentication service.";
+
+            formMessage.classList.add("visible");
+        });
+    </script>
+
+</body>
+</html>
